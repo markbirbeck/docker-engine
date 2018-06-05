@@ -1,6 +1,6 @@
 # docker-engine
 
-A Docker Engine API client for Node, driven by Docker's Swagger definition.
+A Docker Engine API client for Node, driven at run-time by Docker's Swagger definition.
 
 ## Why?
 
@@ -21,4 +21,4 @@ Key to the approach we've taken here is:
 
 ## Future Work
 
-The [docker-modem](https://www.npmjs.com/package/docker-modem) provides all of the connection code we would need for talking to the Docker API, handling TLS, duplex streaming, and so on. However, I wasn't quickly able to work out how to wire it in to `docker-engine`. This means that until `docker-modem` is incorporated the communication part of `docker-engine` is extremely basic.
+The [docker-modem](https://www.npmjs.com/package/docker-modem) module provides all of the connection code we would need for talking to the Docker API, handling TLS, duplex streaming, and so on. However, I wasn't quickly able to work out how to wire it in to `docker-engine`. This means that until `docker-modem` is incorporated the communication part of `docker-engine` is extremely basic.
