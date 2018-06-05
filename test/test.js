@@ -6,7 +6,7 @@
 
 const tap = require('tap')
 
-const dockerEngine = require('../src/')
+const dockerEngine = require('..')
 
 tap.test('docker-engine', async t => {
 
