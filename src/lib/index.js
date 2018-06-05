@@ -1,7 +1,8 @@
+const fs = require('fs')
 const http = require('http')
+
 const Swagger = require('swagger-client')
 const yaml = require('js-yaml')
-const fs = require('fs')
 
 /**
  * We could load directly from docker.com, but having the file locally means
