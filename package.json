@@ -1,0 +1,20 @@
+{
+  "name": "docker-engine",
+  "version": "0.1.0",
+  "description": "Node Docker Engine API Client Driven By Swagger",
+  "dependencies": {
+    "swagger-client": "^3.8.6",
+    "js-yaml": "^3.12.0"
+  },
+  "keywords": [
+    "docker",
+    "docker api",
+    "docker client",
+    "docker compose",
+    "docker engine"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/markbirbeck/docker-engine",
+  "bugs": "https://github.com/markbirbeck/docker-engine/issues",
+  "homepage": "https://github.com/markbirbeck/docker-engine"
+}
