@@ -1,5 +1,6 @@
 const fs = require('fs')
 const http = require('http')
+const path = require('path')
 
 const Swagger = require('swagger-client')
 const yaml = require('js-yaml')
@@ -17,7 +18,7 @@ const yaml = require('js-yaml')
  */
 
 const apiVersion = `v1.37`
-const yamlFile = __dirname + `/swagger/${apiVersion}/swagger.yaml`
+const yamlFile = path.resolve(__dirname, `../swagger/${apiVersion}/swagger.yaml`)
 const spec = yaml.safeLoad(fs.readFileSync(yamlFile))
 
 const dockerEngine = async () => {
