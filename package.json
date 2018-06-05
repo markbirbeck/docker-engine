@@ -1,6 +1,6 @@
 {
   "name": "docker-engine",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Node Docker Engine API Client Driven By Swagger",
   "dependencies": {
     "swagger-client": "^3.8.6",
