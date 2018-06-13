@@ -9,10 +9,7 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 RUN npm install --no-package-lock
 
-# Dependencies will be global so add to path:
+# Install test environment:
 #
-ENV NODE_PATH /usr/local/lib/node_modules
-
-# ...TAP
-RUN npm install -g \
+RUN npm install --no-package-lock \
   tap
