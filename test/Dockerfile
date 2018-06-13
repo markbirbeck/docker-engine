@@ -1,4 +1,4 @@
-FROM node:8-alpine
+FROM node:8.11.3-alpine
 
 # Create app directory and set as working directory:
 #
@@ -9,10 +9,11 @@ WORKDIR /usr/src/app
 COPY package.json /usr/src/app
 RUN npm install --no-package-lock
 
-# Dependencies will be global so add to path:
+# Install test environment:
 #
-ENV NODE_PATH /usr/local/lib/node_modules
-
-# ...TAP
-RUN npm install -g \
+RUN npm install --no-package-lock \
   tap
+
+# Ensure we can run installed modules:
+#
+ENV PATH=./node_modules/.bin:$PATH
