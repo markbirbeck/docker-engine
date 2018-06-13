@@ -18,7 +18,3 @@ Key to the approach we've taken here is:
 
 * to use the Swagger file as a *single source of truth* to drive the creation of the client. And more specifically, to do this at *run-time* so that the same module can be used for any version of the Docker API, without needing to be continually updated;
 * to use ES6 proxies to allow the client methods to be wrapped and so present different kinds of interfaces to developers. This makes it very easy to present `harbor-master`- or `docker-client`-compatible interfaces that still benefit from being Swagger-driven.
-
-## Future Work
-
-The [docker-modem](https://www.npmjs.com/package/docker-modem) module provides all of the connection code we would need for talking to the Docker API, handling TLS, duplex streaming, and so on. However, I wasn't quickly able to work out how to wire it in to `docker-engine`. This means that until `docker-modem` is incorporated the communication part of `docker-engine` is extremely basic.
