@@ -13,3 +13,7 @@ RUN npm install --no-package-lock
 #
 RUN npm install --no-package-lock \
   tap
+
+# Ensure we can run installed modules:
+#
+ENV PATH=./node_modules/.bin:$PATH
