@@ -1,6 +1,6 @@
 {
   "name": "docker-engine",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Node Docker Engine API Client Driven By Swagger",
   "dependencies": {
     "docker-modem": "^1.0.6",
