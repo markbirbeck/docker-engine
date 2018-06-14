@@ -109,9 +109,14 @@ const dockerEngine = async () => {
         options.path = url.pathname
         delete options.url
 
+        const _query = {}
+        for (const param of url.searchParams.entries()) {
+          _query[param[0]] = param[1]
+        }
+
         options.options = {
           ...options.options,
-          _query: url.searchParams
+          _query
         }
 
         /**
