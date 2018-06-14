@@ -22,4 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/markbirbeck/docker-engine/compare/v0.2.0...HEAD
 [v0.2.0]: https://github.com/markbirbeck/docker-engine/compare/v0.1.1...v0.2.0
-[v0.2.1]: https://github.com/markbirbeck/docker-engine/compare/v0.2.0...v0.2.1
+[v0.2.2]: https://github.com/markbirbeck/docker-engine/compare/v0.2.0...v0.2.2
