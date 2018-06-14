@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.2.1] - 2018-06-14
+### Fixed
+- Requests to API with payload and query parameters are failing (#7).
+
 ## [v0.2.0] - 2018-06-13
 ### Added
 - Use very specific version of Node in `Dockerfile` for tests (latest LTS)
@@ -18,3 +22,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 [Unreleased]: https://github.com/markbirbeck/docker-engine/compare/v0.2.0...HEAD
 [v0.2.0]: https://github.com/markbirbeck/docker-engine/compare/v0.1.1...v0.2.0
+[v0.2.1]: https://github.com/markbirbeck/docker-engine/compare/v0.2.0...v0.2.1
