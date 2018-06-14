@@ -106,7 +106,7 @@ const dockerEngine = async () => {
          */
 
         const url = new URL(options.url, 'http://localhost')
-        options.path = url.pathname
+        options.path = url.pathname + '?'
         delete options.url
 
         const _query = {}

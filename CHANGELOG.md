@@ -6,7 +6,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
-## [v0.2.1] - 2018-06-14
+## [v0.2.2] - 2018-06-14
 ### Fixed
 - Requests to API with payload and query parameters are failing (#7).
 
