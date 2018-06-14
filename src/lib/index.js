@@ -107,11 +107,12 @@ const dockerEngine = async () => {
 
         const url = new URL(options.url, 'http://localhost')
         options.path = url.pathname
+        delete options.url
+
         options.options = {
           ...options.options,
           _query: url.searchParams
         }
-        delete options.url
 
         /**
          * Return a promise that does the request:
