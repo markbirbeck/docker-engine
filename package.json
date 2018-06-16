@@ -4,6 +4,7 @@
   "description": "Node Docker Engine API Client Driven By Swagger",
   "dependencies": {
     "docker-modem": "^1.0.6",
+    "strong-tunnel": "^1.1.6",
     "swagger-client": "^3.8.6",
     "js-yaml": "^3.12.0"
   },
