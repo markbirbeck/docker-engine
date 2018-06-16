@@ -2,12 +2,9 @@ const { Client } = require('ssh2')
 const fs = require('fs')
 const net = require('net')
 
-module.exports = async (remoteDocker) => {
-  const sshOpts = {
-    username: 'docker',
-    host: remoteDocker,
-    privateKey: fs.readFileSync(__dirname + '/docker-swarm.pem', 'utf8')
-  }
+module.exports = async (config) => {
+  const sshOpts = { ...config }
+  delete sshOpts.socketPath
 
   return new Promise((resolve, reject) => {
     const server = net
@@ -18,7 +15,7 @@ module.exports = async (remoteDocker) => {
         console.log('connection ready')
         conn._sock.unref()
         conn
-        .openssh_forwardOutStreamLocal('/var/run/docker.sock', (err, stream) => {
+        .openssh_forwardOutStreamLocal(config.socketPath, (err, stream) => {
           console.log('setting up forwarding')
           if (err) {
             console.log('closing connection because forwarding not set:', err)

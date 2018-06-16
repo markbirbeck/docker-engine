@@ -3,8 +3,18 @@ const tap = require('tap')
 const dockerEngine = require('..')
 
 tap.test('docker-engine', async t => {
+  let config
 
-  const client = await dockerEngine(process.env.DOCKER_AWS)
+  if (process.env.DOCKER_AWS) {
+    config = {
+      username: 'docker',
+      privateKey: require('fs').readFileSync(__dirname + '/docker-swarm.pem', 'utf8'),
+      host: process.env.DOCKER_AWS,
+      socketPath: '/var/run/docker.sock'
+    }
+  }
+
+  const client = await dockerEngine(config)
 
   /**
    * Create a container and check there are no warnings:
