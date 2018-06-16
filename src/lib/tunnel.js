@@ -1,18 +1,18 @@
-const tunnel = require('strong-tunnel')
+const tunnel = require('tunnel-ssh')
 const fs = require('fs')
 
 module.exports = async (remoteDocker) => {
   const sshOpts = {
     username: 'docker',
+    host: remoteDocker,
+    dstHost: '/var/run/docker.sock',
     privateKey: fs.readFileSync(__dirname + '/docker-swarm.pem', 'utf8')
   }
 
   return new Promise((resolve, reject) => {
-    tunnel(remoteDocker, sshOpts, function(err, url) {
+    tunnel(sshOpts, function(err, tnl) {
       if (err) reject(err)
-      // this returned url the local proxy, something like 'tcp://127.0.0.1:23989'
-      // docker requests now tunnelled over ssh via a local proxy
-      else resolve(url)
+      else resolve(tnl)
     })
   })
 }
