@@ -4,7 +4,7 @@ const dockerEngine = require('..')
 
 tap.test('docker-engine', async t => {
 
-  const client = await dockerEngine()
+  const client = await dockerEngine(process.env.DOCKER_AWS)
 
   /**
    * Create a container and check there are no warnings:
