@@ -2,6 +2,29 @@
 
 A Docker Engine API client for Node, driven at run-time by Docker's Swagger definition.
 
+## Usage
+
+To use `docker-engine` do:
+
+```javascript
+const client = await dockerEngine()
+```
+
+This will connect to the Docker API using the default values (for example, `/var/run/docker.sock` to connect).
+
+### Connecting to a Docker Swarm on AWS
+
+To use an SSH tunnel to connect to a swarm that has been set up using the [Docker for AWS instructions](https://docs.docker.com/docker-for-aws/), use config like the following:
+
+```javascript
+const client = await dockerEngine({
+  username: 'docker',
+  privateKey: require('fs').readFileSync(__dirname + '/docker-swarm.pem', 'utf8'),
+  host: 'ec2-54-183-237-159.us-west.compute-1.amazonaws.com,
+  socketPath: '/var/run/docker.sock'
+})
+```
+
 ## Why?
 
 There are a number of excellent modules that allow you to connect to the Docker Engine API, but each of them caused me a problem in different ways. Whilst looking at making changes to these modules I realised that all a Docker API client needed was to use the Swagger file that Docker provides.

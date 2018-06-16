@@ -1,11 +1,12 @@
 {
   "name": "docker-engine",
-  "version": "0.2.2",
+  "version": "0.3.0",
   "description": "Node Docker Engine API Client Driven By Swagger",
   "dependencies": {
     "docker-modem": "^1.0.6",
-    "swagger-client": "^3.8.6",
-    "js-yaml": "^3.12.0"
+    "js-yaml": "^3.12.0",
+    "ssh2": "^0.6.1",
+    "swagger-client": "^3.8.6"
   },
   "main": "./src/lib/",
   "keywords": [

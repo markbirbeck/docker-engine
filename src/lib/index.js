@@ -23,8 +23,19 @@ const apiVersion = `v1.37`
 const yamlFile = path.resolve(__dirname, `../swagger/${apiVersion}/swagger.yaml`)
 const spec = yaml.safeLoad(fs.readFileSync(yamlFile))
 
-const dockerEngine = async () => {
-  const modem = new Modem()
+const dockerEngine = async (tunnelConfig) => {
+
+  /**
+   * If a tunnel is requested then set one up:
+   */
+
+  let config
+  if (tunnelConfig) {
+    const tunnel = require('./tunnel')
+    config = await tunnel(tunnelConfig);
+  }
+
+  const modem = new Modem(config)
 
   const swagger = await Swagger(
     'localhost',
