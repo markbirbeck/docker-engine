@@ -20,7 +20,7 @@ To use an SSH tunnel to connect to a swarm that has been set up using the [Docke
 const client = await dockerEngine({
   username: 'docker',
   privateKey: require('fs').readFileSync(__dirname + '/docker-swarm.pem', 'utf8'),
-  host: 'ec2-54-183-237-159.us-west.compute-1.amazonaws.com,
+  host: 'ec2-54-183-237-159.us-west.compute-1.amazonaws.com',
   socketPath: '/var/run/docker.sock'
 })
 ```
