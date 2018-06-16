@@ -10,6 +10,7 @@ tap.test('docker-engine', async t => {
    * Create a container and check there are no warnings:
    */
 
+  t.comment('creating container')
   let res = await client.Container.ContainerCreate({
     body: {
       Image: 'hello-world'
@@ -21,6 +22,7 @@ tap.test('docker-engine', async t => {
    * Inspect the container and check a couple of properties:
    */
 
+  t.comment('inspecting container')
   const id = res.Id
   res = await client.Container.ContainerInspect({id})
   t.same(res.Config.Cmd, ['/hello'])
@@ -30,6 +32,7 @@ tap.test('docker-engine', async t => {
    * Modify the container:
    */
 
+  t.comment('updating container')
   t.equal(res.HostConfig.Memory, 0)
   t.equal(res.HostConfig.MemorySwap, 0)
   const memoryLimit = 4 * 1024 * 1024
@@ -48,6 +51,7 @@ tap.test('docker-engine', async t => {
    * Delete the container:
    */
 
+  t.comment('deleting container')
   await client.Container.ContainerDelete({id})
   t.end()
 })
