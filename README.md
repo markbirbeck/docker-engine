@@ -25,6 +25,14 @@ const client = await dockerEngine({
 })
 ```
 
+To output logging information on tunnel connections set the `DEBUG` environment variable:
+
+```shell
+DEBUG=docker-engine:tunnel \
+DOCKER_AWS=ec2-54-183-237-159.us-west.compute-1.amazonaws.com \
+  tap test/test.js
+```
+
 ## Why?
 
 There are a number of excellent modules that allow you to connect to the Docker Engine API, but each of them caused me a problem in different ways. Whilst looking at making changes to these modules I realised that all a Docker API client needed was to use the Swagger file that Docker provides.
