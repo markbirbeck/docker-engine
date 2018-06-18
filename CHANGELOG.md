@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.4.0] - 2018-06-18
+### Added
+- Use debug module for logging tunnel messages (#12).
+
 ## [v0.3.0] - 2018-06-16
 ### Added
 - Support the use of SSH tunnelling without requiring separate app (#10).
@@ -28,3 +32,4 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.2.0]: https://github.com/markbirbeck/docker-engine/compare/v0.1.1...v0.2.0
 [v0.2.2]: https://github.com/markbirbeck/docker-engine/compare/v0.2.0...v0.2.2
 [v0.3.0]: https://github.com/markbirbeck/docker-engine/compare/v0.2.2...v0.3.0
+[v0.4.0]: https://github.com/markbirbeck/docker-engine/compare/v0.3.0...v0.4.0
