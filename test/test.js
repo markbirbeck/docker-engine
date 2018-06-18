@@ -50,12 +50,12 @@ tap.test('docker-engine', async t => {
     id,
     update: {
       Memory: memoryLimit,
-      MemorySwap: memoryLimit
+      MemorySwap: -1
     }
   })
   res = await client.Container.ContainerInspect({id})
   t.equal(res.HostConfig.Memory, memoryLimit)
-  t.equal(res.HostConfig.MemorySwap, memoryLimit)
+  t.equal(res.HostConfig.MemorySwap, -1)
 
   /**
    * Delete the container:
