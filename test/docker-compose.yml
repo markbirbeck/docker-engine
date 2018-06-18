@@ -7,4 +7,6 @@ services:
     image: dev/docker-engine
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - ..:/usr/src/app
+      - /usr/src/app/node_modules
     command: ["/bin/sh", "-c", "node test/test.js"]
