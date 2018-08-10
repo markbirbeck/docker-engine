@@ -85,6 +85,15 @@ class SwaggerModem extends Modem {
     delete options.responses
 
     /**
+     * If we are streaming something then ask for the stream object to be
+     * returned (otherwise we just let docker-modem handle the text processing):
+     */
+
+    if (options.options._query.stream) {
+      options.isStream = true
+    }
+
+    /**
      * The options are ready to go:
      */
 
