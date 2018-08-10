@@ -24,10 +24,10 @@ class SwaggerRequestBuilder {
     this.spec = yaml.safeLoad(fs.readFileSync(yamlFile))
   }
 
-  ContainerCreate(parameters) {
+  buildRequest(operationId, p, parameters) {
     const params = {
       spec: this.spec,
-      operationId: 'ContainerCreate',
+      operationId,
       parameters
     }
 
@@ -37,29 +37,18 @@ class SwaggerRequestBuilder {
      * Attach the acceptable response codes:
      */
 
-    const definition = this.spec.paths['/containers/create'][req.method.toLowerCase()]
+    const definition = this.spec.paths[p][req.method.toLowerCase()]
     req.responses = definition.responses
 
     return req
   }
 
+  ContainerCreate(parameters) {
+    return this.buildRequest('ContainerCreate', '/containers/create', parameters)
+  }
+
   ContainerDelete(parameters) {
-    const params = {
-      spec: this.spec,
-      operationId: 'ContainerDelete',
-      parameters
-    }
-
-    const req = Swagger.buildRequest(params)
-
-    /**
-     * Attach the acceptable response codes:
-     */
-
-    const definition = this.spec.paths['/containers/{id}'][req.method.toLowerCase()]
-    req.responses = definition.responses
-
-    return req
+    return this.buildRequest('ContainerDelete', '/containers/{id}', parameters)
   }
 }
 
