@@ -14,6 +14,9 @@ class DockerEngine {
 
     const handler = {
       get(obj, prop) {
+        if (prop === 'then') {
+          return obj[prop]
+        }
         return params => {
           return obj.dial(obj.builder[prop](params))
         }
