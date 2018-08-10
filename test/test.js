@@ -21,7 +21,7 @@ tap.test('docker-engine', async t => {
    */
 
   t.comment('creating container')
-  let res = await client.Container.ContainerCreate({
+  let res = await client.ContainerCreate({
     body: {
       Image: 'hello-world'
     }
@@ -34,7 +34,7 @@ tap.test('docker-engine', async t => {
 
   t.comment('inspecting container')
   const id = res.Id
-  res = await client.Container.ContainerInspect({id})
+  res = await client.ContainerInspect({id})
   t.same(res.Config.Cmd, ['/hello'])
   t.same(res.Config.Image, 'hello-world')
 
@@ -46,14 +46,14 @@ tap.test('docker-engine', async t => {
   t.equal(res.HostConfig.Memory, 0)
   t.equal(res.HostConfig.MemorySwap, 0)
   const memoryLimit = 4 * 1024 * 1024
-  await client.Container.ContainerUpdate({
+  await client.ContainerUpdate({
     id,
     update: {
       Memory: memoryLimit,
       MemorySwap: -1
     }
   })
-  res = await client.Container.ContainerInspect({id})
+  res = await client.ContainerInspect({id})
   t.equal(res.HostConfig.Memory, memoryLimit)
   t.equal(res.HostConfig.MemorySwap, -1)
 
@@ -62,6 +62,6 @@ tap.test('docker-engine', async t => {
    */
 
   t.comment('deleting container')
-  await client.Container.ContainerDelete({id})
+  await client.ContainerDelete({id})
   t.end()
 })
