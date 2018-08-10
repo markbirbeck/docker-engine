@@ -22,6 +22,20 @@ class SwaggerRequestBuilder {
 
     const yamlFile = path.resolve(__dirname, `../swagger/${apiVersion}/swagger.yaml`)
     this.spec = yaml.safeLoad(fs.readFileSync(yamlFile))
+
+    /**
+     * Set up a handler that will cope with all operation IDs:
+     */
+
+    const handler = {
+      get(obj, prop) {
+        return parameters => {
+          return obj.buildRequest(prop, parameters)
+        }
+      }
+    }
+
+    return new Proxy(this, handler)
   }
 
   buildRequest(operationId, parameters) {
@@ -56,14 +70,6 @@ class SwaggerRequestBuilder {
     req.responses = definition[method].responses
 
     return req
-  }
-
-  ContainerCreate(parameters) {
-    return this.buildRequest('ContainerCreate', parameters)
-  }
-
-  ContainerDelete(parameters) {
-    return this.buildRequest('ContainerDelete', parameters)
   }
 }
 
