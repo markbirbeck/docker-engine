@@ -52,6 +52,15 @@ tap.test('DockerEngine', async t => {
   t.equal(res.HostConfig.Memory, memoryLimit)
   t.equal(res.HostConfig.MemorySwap, -1)
 
+  /**
+   * Run the container:
+   */
+
+  t.comment('running container')
+  await api.ContainerStart({ id })
+  res = await api.ContainerWait({ id })
+  t.same(res, { Error: null, StatusCode: 0 })
+
   t.comment('deleting the created container')
 
   /**

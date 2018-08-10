@@ -56,7 +56,7 @@ class SwaggerModem extends Modem {
      * docker-modem uses 'options._body' for 'body':
      */
 
-    const _body = options.body
+    const _body = options.body || {}
     delete options.body
 
     /**
