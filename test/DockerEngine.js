@@ -60,6 +60,41 @@ tap.test('DockerEngine', async t => {
   await api.ContainerStart({ id })
 
   /**
+   * Attach the container, and receive the logs as a stream:
+   */
+
+  res = await api.ContainerAttach({
+    id,
+    logs: true,
+    stream: true,
+    stdout: true,
+    stderr: true
+  })
+  res.setEncoding('utf8')
+
+  /**
+   * The logs should arrive 1s apart, which will ensure they are in separate
+   * chunks:
+   */
+
+  const str = []
+  res.on('data', chunk => {
+    str.push(chunk)
+  })
+
+  /**
+   * When we have all of the logs, check we have enough lines, and that each
+   * line contains the line number:
+   */
+
+  res.on('end', async () => {
+    t.equal(str.length, 5)
+    for (let i = 0; i < 5; i++) {
+      t.equal(str[i], `\x01\0\0\0\0\0\0\x02${i + 1}\n`)
+    }
+  })
+
+  /**
    * Wait for the container to finish:
    */
 
