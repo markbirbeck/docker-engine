@@ -14,7 +14,7 @@ tap.test('DockerEngine', async t => {
     Image: 'alpine',
     Cmd: ['/bin/sh', '-c', 'for i in 1 2 3 4 5; do echo "${i}"; sleep 1s; done']
   }
-  const res = await api.ContainerCreate({ body })
+  let res = await api.ContainerCreate({ body })
 
   /**
    * There should be no errors, and an ID should be returned:
@@ -22,6 +22,20 @@ tap.test('DockerEngine', async t => {
 
   t.equal(res.Warnings, null)
   t.ok(res.Id)
+
+  t.comment('deleting the created container')
+
+  /**
+   * Prepare the request:
+   */
+
+  res = await api.ContainerDelete({ id: res.Id })
+
+  /**
+   * Nothing is returned, but if there's no error thrown then all is well:
+   */
+
+  t.equal(res, '')
 
   t.end()
 })

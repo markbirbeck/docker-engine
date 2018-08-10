@@ -14,6 +14,12 @@ class DockerEngine {
     debug(`about to dial: ${JSON.stringify(req)}`)
     return this.modem.dial(req)
   }
+
+  ContainerDelete(params) {
+    const req = this.builder.ContainerDelete(params)
+    debug(`about to dial: ${JSON.stringify(req)}`)
+    return this.modem.dial(req)
+  }
 }
 
 module.exports = DockerEngine
