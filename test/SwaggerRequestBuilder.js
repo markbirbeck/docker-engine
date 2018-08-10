@@ -28,4 +28,25 @@ tap.test('SwaggerRequestBuilder', async t => {
 
     t.end()
   })
+
+  t.test('create a request object for deleting a container', async t => {
+    const id = 'container-to-delete'
+    const req = builder.ContainerDelete({ id })
+
+    /**
+     * Check that the basic components for a request are present:
+     */
+
+    t.equal(req.url, `/v1.37/containers/${id}?v=false&force=false&link=false`)
+    t.equal(req.method, 'DELETE')
+
+    /**
+     * Also check that there is a property that tells us how to verify the
+     * result of the request:
+     */
+
+    t.ok(req.responses)
+
+    t.end()
+  })
 })

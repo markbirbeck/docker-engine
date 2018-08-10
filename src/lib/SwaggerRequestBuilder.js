@@ -42,6 +42,25 @@ class SwaggerRequestBuilder {
 
     return req
   }
+
+  ContainerDelete(parameters) {
+    const params = {
+      spec: this.spec,
+      operationId: 'ContainerDelete',
+      parameters
+    }
+
+    const req = Swagger.buildRequest(params)
+
+    /**
+     * Attach the acceptable response codes:
+     */
+
+    const definition = this.spec.paths['/containers/{id}'][req.method.toLowerCase()]
+    req.responses = definition.responses
+
+    return req
+  }
 }
 
 module.exports = SwaggerRequestBuilder
