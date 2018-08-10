@@ -33,6 +33,25 @@ tap.test('DockerEngine', async t => {
   t.same(res.Config.Cmd, body.Cmd)
   t.same(res.Config.Image, body.Image)
 
+  /**
+   * Modify the container:
+   */
+
+  t.comment('updating container')
+  t.equal(res.HostConfig.Memory, 0)
+  t.equal(res.HostConfig.MemorySwap, 0)
+  const memoryLimit = 4 * 1024 * 1024
+  await api.ContainerUpdate({
+    id,
+    update: {
+      Memory: memoryLimit,
+      MemorySwap: -1
+    }
+  })
+  res = await api.ContainerInspect({id})
+  t.equal(res.HostConfig.Memory, memoryLimit)
+  t.equal(res.HostConfig.MemorySwap, -1)
+
   t.comment('deleting the created container')
 
   /**
