@@ -9,16 +9,17 @@ class DockerEngine {
     this.modem = new Modem(config)
   }
 
-  ContainerCreate(params) {
-    const req = this.builder.ContainerCreate(params)
+  dial(req) {
     debug(`about to dial: ${JSON.stringify(req)}`)
     return this.modem.dial(req)
   }
 
+  ContainerCreate(params) {
+    return this.dial(this.builder.ContainerCreate(params))
+  }
+
   ContainerDelete(params) {
-    const req = this.builder.ContainerDelete(params)
-    debug(`about to dial: ${JSON.stringify(req)}`)
-    return this.modem.dial(req)
+    return this.dial(this.builder.ContainerDelete(params))
   }
 }
 
