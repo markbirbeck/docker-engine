@@ -24,7 +24,7 @@ class SwaggerRequestBuilder {
     this.spec = yaml.safeLoad(fs.readFileSync(yamlFile))
   }
 
-  buildRequest(operationId, p, parameters) {
+  buildRequest(operationId, parameters) {
     const params = {
       spec: this.spec,
       operationId,
@@ -37,18 +37,33 @@ class SwaggerRequestBuilder {
      * Attach the acceptable response codes:
      */
 
-    const definition = this.spec.paths[p][req.method.toLowerCase()]
-    req.responses = definition.responses
+    /**
+     * The paths are in an object so convert to an array so that we can use
+     * find():
+     */
+
+    const pathsAsArray = Object.keys(this.spec.paths).map(k => this.spec.paths[k])
+
+    /**
+     * Now find the operation that corresponds to the operationId and method that
+     * we have:
+     */
+
+    const method = req.method.toLowerCase()
+    const definition = pathsAsArray.find(p => {
+      return p[method] && (p[method].operationId === operationId)
+    })
+    req.responses = definition[method].responses
 
     return req
   }
 
   ContainerCreate(parameters) {
-    return this.buildRequest('ContainerCreate', '/containers/create', parameters)
+    return this.buildRequest('ContainerCreate', parameters)
   }
 
   ContainerDelete(parameters) {
-    return this.buildRequest('ContainerDelete', '/containers/{id}', parameters)
+    return this.buildRequest('ContainerDelete', parameters)
   }
 }
 
