@@ -21,10 +21,12 @@ class SwaggerModem extends Modem {
      * docker-modem uses 'options._body' for 'body':
      */
 
-    options.options = {
-      _body: options.body
+    if (options.body) {
+      options.options = {
+        _body: options.body
+      }
+      delete options.body
     }
-    delete options.body
 
     /**
      * docker-modem just uses 'true' to indicate the acceptable status codes,
