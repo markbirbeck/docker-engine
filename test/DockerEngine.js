@@ -58,6 +58,12 @@ tap.test('DockerEngine', async t => {
 
   t.comment('running container')
   await api.ContainerStart({ id })
+
+  /**
+   * Wait for the container to finish:
+   */
+
+  t.comment('waiting for the running container')
   res = await api.ContainerWait({ id })
   t.same(res, { Error: null, StatusCode: 0 })
 
