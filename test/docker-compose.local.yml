@@ -1,7 +1,4 @@
 version: "2"
 services:
   unit-test:
-    volumes:
-      - ${PWD}:/usr/src/app
-      - /usr/src/app/node_modules
     command: "/bin/sh"
