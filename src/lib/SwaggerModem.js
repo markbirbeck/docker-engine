@@ -38,9 +38,14 @@ class SwaggerModem extends Modem {
 
     /**
      * docker-modem uses 'path' for the URL:
+     *
+     * NOTE: The trailing '?' seems to be important in docker-modem, although
+     * I think it's a bug. I've raised an issue to track it:
+     *
+     *  https://github.com/apocas/docker-modem/issues/95
      */
 
-    options.path = url.pathname
+    options.path = url.pathname + '?'
     delete options.url
 
     /**
@@ -78,6 +83,15 @@ class SwaggerModem extends Modem {
       options.statusCodes[+key] = true
     })
     delete options.responses
+
+    /**
+     * If we are streaming something then ask for the stream object to be
+     * returned (otherwise we just let docker-modem handle the text processing):
+     */
+
+    if (options.options._query.stream) {
+      options.isStream = true
+    }
 
     /**
      * The options are ready to go:
