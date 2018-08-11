@@ -1,7 +1,5 @@
 # docker-engine
 
-[![Build Status](https://semaphoreci.com/api/v1/markbirbeck/docker-engine/branches/master/badge.svg)](https://semaphoreci.com/markbirbeck/docker-engine)
-
 A Docker Engine API client for Node, driven at run-time by Docker's Swagger definition.
 
 ## Usage
