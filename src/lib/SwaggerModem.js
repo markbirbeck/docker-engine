@@ -93,9 +93,8 @@ class SwaggerModem extends Modem {
      * in a URL.
      */
 
-    if (options.options._query.stream === 'true') {
-      options.isStream = true
-    }
+    options.isStream = ['follow', 'logs', 'stream']
+    .some(key => options.options._query[key] === 'true')
 
     /**
      * The options are ready to go:
