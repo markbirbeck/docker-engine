@@ -6,6 +6,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [v0.6.0] - 2018-08-13
+### Added
+- Switch to streaming if `follow` or `logs` is present (#19).
+
 ## [v0.5.1] - 2018-08-13
 ### Added
 - Stream flag should check for String('true') rather than Boolean(true) (#18).
@@ -43,4 +47,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 [v0.4.0]: https://github.com/markbirbeck/docker-engine/compare/v0.3.0...v0.4.0
 [v0.5.0]: https://github.com/markbirbeck/docker-engine/compare/v0.4.0...v0.5.0
 [v0.5.1]: https://github.com/markbirbeck/docker-engine/compare/v0.5.0...v0.5.1
-[Unreleased]: https://github.com/markbirbeck/docker-engine/compare/v0.5.1...HEAD
+[v0.6.0]: https://github.com/markbirbeck/docker-engine/compare/v0.5.1...v0.6.0
+[Unreleased]: https://github.com/markbirbeck/docker-engine/compare/v0.6.0...HEAD
