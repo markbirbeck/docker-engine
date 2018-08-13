@@ -39,7 +39,6 @@ tap.test('SwaggerModem', async t => {
   const id = res.Id
   req = builder.ContainerAttach({
     id,
-    logs: true,
     stream: false,
     stdout: true,
     stderr: true
