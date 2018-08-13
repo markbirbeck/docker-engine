@@ -87,9 +87,13 @@ class SwaggerModem extends Modem {
     /**
      * If we are streaming something then ask for the stream object to be
      * returned (otherwise we just let docker-modem handle the text processing):
+     *
+     * Note that we check for String('true') rather than Boolean(true) because
+     * by the time we get to this code the parameters have been prepared for use
+     * in a URL.
      */
 
-    if (options.options._query.stream) {
+    if (options.options._query.stream === 'true') {
       options.isStream = true
     }
 
