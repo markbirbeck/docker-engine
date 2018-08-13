@@ -49,9 +49,14 @@ tap.test('SwaggerModem', async t => {
 
   /**
    * Verify that we didn't get a streaming object:
+   *
+   * We could test against an empty string but when the test fails we will
+   * get the entire streaming object displayed as 'not matching' the empty
+   * string. Checking the type means that we get a much more compact error
+   * message!
    */
 
-  t.equal(res, '')
+  t.type(res, 'string')
 
   t.comment('deleting the created container')
 
