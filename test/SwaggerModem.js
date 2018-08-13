@@ -31,13 +31,35 @@ tap.test('SwaggerModem', async t => {
   t.equal(res.Warnings, null)
   t.ok(res.Id)
 
+  /**
+   * Attach to the container but with streaming off to ensure that we
+   * do NOT get a streaming object:
+   */
+
+  const id = res.Id
+  req = builder.ContainerAttach({
+    id,
+    logs: true,
+    stream: false,
+    stdout: true,
+    stderr: true
+  })
+
+  res = await modem.dial(req)
+
+  /**
+   * Verify that we didn't get a streaming object:
+   */
+
+  t.equal(res, '')
+
   t.comment('deleting the created container')
 
   /**
    * Prepare the request:
    */
 
-  req = builder.ContainerDelete({ id: res.Id })
+  req = builder.ContainerDelete({ id })
 
   /**
    * Make the API call:
